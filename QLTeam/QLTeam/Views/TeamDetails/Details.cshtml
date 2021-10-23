@@ -1,0 +1,90 @@
+﻿@model QLTeam.Models.TeamDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TeamDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomQuyenID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomQuyenID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChucVuCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChucVuCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChucVuName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChucVuName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVienID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVienID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeamDetailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

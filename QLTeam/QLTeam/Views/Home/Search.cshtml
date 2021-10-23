@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Tìm kiếm";
+}
+<script>
+    function clickTimKiem() {
+        //alert("tìm kiếm");
+        var HoTen = $("#HoTen").val();
+        var MaNhanVien = $("#MaNhanVien").val();
+        var CapBacCode = $("#CapBacCode").val();
+        var CreatedTime = $("#CreatedTime").val();
+        console.log(HoTen);
+        console.log(MaNhanVien);
+        console.log(CapBacCode);
+        console.log(CreatedTime);
+        $.ajax({
+            method: "POST",
+            url: "StoreSearch",
+            data: { HoTen: HoTen, MaNhanVien: MaNhanVien, CapBacCode: CapBacCode, CreatedTime: CreatedTime }
+        })
+            .done(function (msg) {
+               
+                let obj = JSON.parse(msg);
+                console.log(obj);
+                document.getElementById("rsSearch").innerHTML = obj;
+            });
+    }
+</script>
+<h2>Tìm kiếm thông tin nhân viên</h2>
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.Label("Họ tên", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("HoTen", "", new { @class = "form-control" })
+            @Html.ValidationMessage("HoTenMsg", "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Mã nhân viên", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("MaNhanVien", "", new { @class = "form-control" })
+            @Html.ValidationMessage("MaNhanVienMsg", "", new { @class = "text-danger" })
+        </div>
+        <hr />
+        @Html.Label("Cấp bậc", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.DropDownList("CapBacCode", new SelectList(ViewBag.CapBac, "CapBacCode", "CapBacName"), "Chọn cấp bậc", new { @class = "form-control" })
+            @Html.ValidationMessage("CapBacMsg", "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Thời gian tạo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("CreatedTime", "", new { @class = "form-control" })
+            @Html.ValidationMessage("CreatedTimeMsg", "", new { @class = "text-danger" })
+         
+        </div>
+        <hr />
+        <button id="button1" runat="server" OnClick="clickTimKiem()" class=" btn btn-default">Tìm kiếm</button>
+        
+    </div>
+</div>
+
+<table class="table" id="rsSearch">
+
+</table>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<QLTeam.Models.LichSuCongTac>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVienID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChucVuCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CongTyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiGianBatDau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiGianketThuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVienID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChucVuCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CongTyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGianBatDau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGianketThuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LichSuCongTacID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LichSuCongTacID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LichSuCongTacID })
+        </td>
+    </tr>
+}
+
+</table>

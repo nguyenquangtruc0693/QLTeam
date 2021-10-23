@@ -1,0 +1,137 @@
+﻿@model QLTeam.Models.NhanVien
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<style type="text/css">
+    .hideField1 {
+        display: none
+    }
+
+    .hideField2 {
+        display: none
+    }
+</style>
+<script type="text/javascript">
+    window.onload = function () {
+        selectCapBac_onchange();
+    };
+
+    function select_onchange(sel) {
+        var e = document.getElementById("TeamID");
+        var strUser = e.options[e.selectedIndex].value;
+        console.log(strUser);
+    }
+    function selectCapBac_onchange(sel) {
+        var e = document.getElementById("CapBacCode");
+        var capBac = e.options[e.selectedIndex].value;
+        console.log("Cấp bậc " + capBac);
+        if (capBac == "NHANVIEN") {
+            $("#hideField1").removeClass('hideField1');
+            $("#hideField2").removeClass('hideField2');
+        }
+        else if (capBac == "QUANLYTRUCTIEP") {
+            $("#hideField1").removeClass('hideField1');
+            $("#hideField2").addClass('hideField2');
+        }
+        else {
+            $("#hideField1").addClass('hideField1');
+            $("#hideField2").addClass('hideField2');
+        }
+
+
+    }
+
+
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>NhanVien</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.NhanVienID)
+        <div class="form-group">
+            @Html.Label("Team", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TeamID", new SelectList(ViewBag.Team, "TeamID", "TeamCode"), "Chọn team", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Cấp bậc", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CapBacCode, new SelectList(ViewBag.CapBac, "CapBacCode", "CapBacName"), "Chọn cấp bậc", new { @class = "form-control", @onchange = "selectCapBac_onchange(this);" })
+            </div>
+        </div>
+        <div class="form-group hideField1" id="hideField1">
+            @Html.Label("Leader", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LeaderID, new SelectList(ViewBag.NhanViens, "NhanVienID", "HoTen"), "Chọn Leader", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group hideField2" id="hideField2">
+            @Html.Label("Quản lý trực tiếp", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.QuanLyTrucTiepID, new SelectList(ViewBag.NhanViens, "NhanVienID", "HoTen"), "Chọn quản lý trực tiếp", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpdatedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdatedTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdatedTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpdatedTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

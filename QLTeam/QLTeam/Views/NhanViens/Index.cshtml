@@ -1,0 +1,75 @@
+﻿@model IEnumerable<QLTeam.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách nhân viên</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Team ID
+        </th>
+        <th>
+            Mã nhân viên
+        </th>
+        <th>
+            Cấp bậc
+        </th>
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Người tạo
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        @*<th>
+            Người cập nhật
+        </th>
+        <th>
+            Ngày cập nhật
+        </th>
+        <th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVienID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CapBacCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedTime)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.UpdatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedTime)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.NhanVienID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.NhanVienID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.NhanVienID })
+        </td>
+    </tr>
+}
+
+</table>
